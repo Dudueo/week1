@@ -33,11 +33,11 @@ public class Main implements Runnable {
        while(End(Game.grid)==0){
            set_turn(Game.time,Game.grid);
            Game.time++;
-           show_grid(Game.grid);//그리드를 출력한다
-           if(End(Game.grid)==1){//o가 이긴다면
+           show_grid(Game.grid);
+           if(End(Game.grid)==1){
                System.out.println("o가 이겼습니다!");
                break;
-           }else if(End(Game.grid)==2){//x가 이긴다면
+           }else if(End(Game.grid)==2){
                System.out.println("x가 이겼습니다!");
                break;
            }else if(Game.time==9){
@@ -46,7 +46,7 @@ public class Main implements Runnable {
            }
        }
    }
-    private static void show_grid(String[][] grid) {//그리드 메서드
+    private static void show_grid(String[][] grid) {
         for (int i = 0; i < 3; i++) {
             for (int j= 0; j <3  ; j++) {
                 System.out.printf("%s",grid[i][j]);
@@ -54,14 +54,14 @@ public class Main implements Runnable {
             System.out.println();
         }
     }
-    private static void set_game(String[][] grid) {//grid의 메모리 주소를 넣을 것
+    private static void set_game(String[][] grid) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 grid[i][j] = "[ ]";
             }
         }
     }
-    private static void set_turn(int time,String[][] grid) {//틱택톡을 두는 경우
+    private static void set_turn(int time,String[][] grid) {
         Scanner scanner=new Scanner(System.in);
         int x,y;//좌표 저장
         while(true){
@@ -70,20 +70,20 @@ public class Main implements Runnable {
             x=scanner.nextInt();
             y=scanner.nextInt();
 
-            if(!Can_set_trun(x,y,grid)){//만약에 그자리에 둘수 없다면 continue로 다시 돌린다는 뜻
+            if(!Can_set_trun(x,y,grid)){
                 continue;
-            }if(time%2==1){ //둘수 있는데 홀수번째 턴이라면 o
+            }if(time%2==1){
                 grid[x-1][y-1]="[o]";
             }
             else{
-                grid[x-1][y-1]="[x]";//짝수번쨰 턴이라면 x
+                grid[x-1][y-1]="[x]";
             }
             break;
         }
     }
-    private static boolean Can_set_trun(int x, int y, String[][] grid) {//놓을 수 있는지 체크해주는 메서드
+    private static boolean Can_set_trun(int x, int y, String[][] grid) {
 
-            if (x < 0 || x > 3 || y < 0 || y > 3) {//범위 밖일때
+            if (x < 0 || x > 3 || y < 0 || y > 3) {
                 System.out.println("이 위치에는 놓을 수 없습니다.");
                 return false;
             }
